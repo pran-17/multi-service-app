@@ -7,11 +7,7 @@ pipeline {
 
     stages {
 
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/pran-17/multi-service-app.git'
-            }
-        }
+        // ✅ Jenkins automatically handles checkout (NO manual checkout needed)
 
         stage('Install') {
             steps {
