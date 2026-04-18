@@ -1,11 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: mysql-service
+  name: devops-service
+  namespace: default
 spec:
+  type: LoadBalancer
   selector:
-    app: mysql
+    app: devops-app
   ports:
-  - port: 3306
-    targetPort: 3306
-  type: ClusterIP
+    - protocol: TCP
+      port: 80
+      targetPort: 5000

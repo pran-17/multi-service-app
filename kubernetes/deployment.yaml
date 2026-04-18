@@ -1,36 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mysql-deployment
+  name: devops-app
+  namespace: default
 spec:
-  replicas: 5
+  replicas: 2
   selector:
     matchLabels:
-      app: mysql
+      app: devops-app
   template:
     metadata:
       labels:
-        app: mysql
+        app: devops-app
     spec:
       containers:
-      - name: mysql
-        image: mysql:5.7
+      - name: devops-container
+        image: praneeth7975/devops-app:latest
         ports:
-        - containerPort: 3306
-        env:
-        - name: MYSQL_ROOT_PASSWORD
-          value: root123
-        resources:
-          requests:
-            cpu: "200m"
-            memory: "256Mi"
-          limits:
-            cpu: "500m"
-            memory: "512Mi"
-        volumeMounts:
-        - name: mysql-storage
-          mountPath: /var/lib/mysql
-      volumes:
-      - name: mysql-storage
-        persistentVolumeClaim:
-          claimName: db-pvc
+        - containerPort: 5000
